@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Друзья - Рулетка $RULET</title>
+    <style>
+        /* Основные стили для страницы */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #ffffff;
+            margin: 0; /* Убираем отступы */
+            padding-bottom: 60px; /* Отступ для контента, чтобы не закрывался меню */
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 20px 0;
+            color: #FFD700;
+        }
+
+        .friends-list {
+            margin: 0 auto;
+            width: 80%;
+            max-width: 600px; /* Максимальная ширина контейнера */
+            padding: 20px;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            background-color: rgba(32, 58, 67, 0.8);
+        }
+
+        .friend {
+            display: flex;
+            justify-content: space-between; /* Распределяем элементы по краям */
+            padding: 10px;
+            border-bottom: 1px solid #FFD700;
+        }
+
+        .friend:last-child {
+            border-bottom: none; /* Убираем нижнюю границу у последнего игрока */
+        }
+
+        .copy-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #ff5722;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .copy-button:hover {
+            background-color: #e64a19;
+        }
+
+        /* Фиксированное меню внизу */
+        .menu {
+            position: fixed;
+            bottom: 0; /* Прикрепляем к низу */
+            left: 0;
+            right: 0; /* Меню растягивается на всю ширину */
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+            padding: 10px 0; /* Отступы для кнопок */
+        }
+
+        .menu button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu button:hover {
+            background-color: #388E3C;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Приглашай друзей</h1>
+    <p>Получай по 1 тикету за каждого приглашённого и 10% от его заработка!</p>
+
+    <div class="friends-list" id="friendsList">
+        <!-- Друзья будут добавлены здесь через JavaScript -->
+    </div>
+
+    <button class="copy-button" onclick="copyInviteLink()">Скопировать ссылку</button>
+
+    <script>
+        // Функция для отображения друзей
+        function displayFriends() {
+            const friendsList = document.getElementById("friendsList");
+
+            // Здесь вы можете добавить своих друзей (для примера)
+            const friends = [
+                { name: 'Друг 1', tokens: 500 },
+                { name: 'Друг 2', tokens: 300 },
+                { name: 'Друг 3', tokens: 150 },
+                { name: 'Друг 4', tokens: 100 },
+                { name: 'Друг 5', tokens: 50 },
+            ];
+
+            // Отображаем друзей
+            friends.forEach(friend => {
+                const friendDiv = document.createElement("div");
+                friendDiv.classList.add("friend");
+                friendDiv.innerHTML = `<span>${friend.name}</span><span>${friend.tokens} токенов</span>`;
+                friendsList.appendChild(friendDiv);
+            });
+        }
+
+        // Функция для копирования ссылки
+        function copyInviteLink() {
+            const inviteLink = "https://your-invite-link.com"; // Замените на вашу ссылку
+            navigator.clipboard.writeText(inviteLink).then(() => {
+                alert("Ссылка успешно скопирована!");
+            }).catch(err => {
+                alert("Не удалось скопировать ссылку.");
+            });
+        }
+
+        // Вызываем функцию для отображения друзей при загрузке страницы
+        displayFriends();
+    </script>
+
+    <!-- Нижнее меню -->
+    <div class="menu">
+        <button onclick="window.location.href='index.html'">Рулетка</button>
+        <button onclick="window.location.href='leaders.html'">Лидеры</button>
+        <button onclick="window.location.href='friends.html'">Друзья</button>
+    </div>
+
+</body>
+</html>
